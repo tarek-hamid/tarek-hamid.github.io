@@ -2044,8 +2044,11 @@ input, select, textarea {
 	}
 
 	.portfolio_images{
-		width: 400px;
-		height: 400px;
+		border-radius: 0.35em;
+		width: 500px;
+		height: 500px;
+		display: inline-block;
+		position: relative;
 	}
 	
 	
