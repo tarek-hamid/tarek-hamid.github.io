@@ -2038,9 +2038,9 @@ input, select, textarea {
 /* Image */
 
 	.cover {
-		border-radius: 500px;
-		width: 250px;
-		height: 250px;
+	border-radius: 500px;
+	width: 250px;
+	height: 250px;
 	}
 
 	.portfolio_images{
@@ -2050,8 +2050,7 @@ input, select, textarea {
 		display: inline-block;
 		position: relative;
 	}
-	
-	
+
 	.image {
 		border-radius: 0.35em;
 		border: 0;
@@ -2149,10 +2148,7 @@ input, select, textarea {
 			}
 
 		.image.avatar {
-			height: auto;
-			width: auto;
-			max-width: 800px;
-			max-height: 800px;
+			border-radius: 100%;
 		}
 
 			.image.avatar:before {
