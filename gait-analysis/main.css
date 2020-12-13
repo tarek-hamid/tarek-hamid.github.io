@@ -8,7 +8,7 @@
 
 .headings {
     text-align: center;
-    margin: 50px;
+    margin-top: 50px;
     font-weight: 1000000;
 }
 
@@ -28,9 +28,11 @@ h5 {
 
 .header-text{
     color: white;
-    text-align: center;
     font-family: 'Montserrat';
-    font-size: 36px;
+    font-size: 2w;
+    flex: 1;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .header{
@@ -38,12 +40,16 @@ h5 {
     height: 190px;
     background-color: lightslategrey;
     color:white;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .fa-customize {
     color: white;
     float: left;
+    flex: 1;
+    margin-left: 90%;
 }
 
 .fa-customize:hover{
@@ -62,16 +68,24 @@ h5 {
 .flexbox-container{
     display:flex;
     justify-content: center;
-    margin: 50px;
+    align-items: center;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 0px;
 }
 
-.item1{
+.paragraph{
     flex: 1;
     margin: 100px;
     text-align: center;
 }
 
-.item2{
-    align-content: right;
+.picture{
     flex: 1;
+    text-align: center;
+}
+
+a {
+    color: blue;
+    font-weight: bold;
 }

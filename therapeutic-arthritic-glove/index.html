@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet"> 
+    <link href="../assets/css/fontawesome-all.min.css" rel="stylesheet">
+    <title>Therapeutic Arthritic Glove (TAG)</title>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="../index.html" class="icon fas fa-3x fa-home fa-customize"></i></a>
+        </div>  
+        <div class = "header-text">
+            <h1 class="header-text">The Therapeutic Arthritic Glove (TAG)</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr class="horizontal-line">
+
+    <div class="summary">
+        <h5>In this project, I designed a glove along with three other biomedical engineers that 
+            delivers heating and cooling to specific joints of the hand, with the goal of alleviating pain and inflammation due to arthritis.
+        </h5>
+    </div>
+    
+    <hr class="horizontal-line">
+
+    <!-- Background  -->
+    <h1 class="headings">Background</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>Arthritis is the leading cause of disability among U.S. adults, with approximately 52.5 million affected nationwide, or 16% of the total population. 
+                While symptoms vary based on the type of arthritis and the progression, most patients are crippled with tender and swollen joints, joint stiffness, 
+                joint pain, reduced range of motion and flexibility, and reduced overall limb function. The most problematic symptoms are experienced following 
+                prolonged rest, especially in the morning following sleep (any inactivity, really). Typically, therapy for this disorder involves hand strengthening 
+                exercises as well as heating and cooling to reduce pain, inflammation, and swelling.
+
+                About 40% of US adults will develop symptomatic arthritis in at least one hand by the age of 85. That's a huge potential population (about 130 million 
+                people) where there really aren't any devices currently which are widely known among the population. Most of the gloves you can find at your local CVS are 
+                ones that offer "passive" heating and cooling; basically they are infused with copper or some other conductive material to improve circulation in the hand 
+                and provide compression. But none of these provide "active" heating and cooling, where you have some sort of system that is physically heating or cooling 
+                your joints.</h5>
+        </div>
+        <div class="picture">
+            <img src="../images/tag-glove.PNG" alt="TAG Glove">
+        </div>
+    </div>
+
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/tag-joints.PNG" alt="TAG Joints">
+        </div>
+        <div class="paragraph">
+            <h5>The Therapeutic Arthritic Glove (TAG) aims to alleviate short-term symptoms of arthritis (pain, swelling, inflammation) by providing 
+                directed heating and cooling to joints in the hand that need it the most.
+
+                Symptoms do vary based on the type of arthritis and the progression of the disease. So the affected joints would be different from person to person, 
+                which makes things difficult. We designed this device for the most common scenario: in general, the most impacted joints in patients with arthritis 
+                are the distal interphalangeal (DIP) and the proximal interphalangeal (PIP) joints of the index, middle, ring and pinky finger, as well as the 
+                metacarpophalangeal (MCP) joint of the thumb.
+            </h5>
+        </div>
+    </div>
+
+    <h1 class="headings">System Layout</h1>
+    <div class="picture">
+        <img src="../images/tag-system-layout.PNG" alt="TAG System Layout">
+    </div>
+    <div class="summary">
+        <h5>The overall system layout can be seen above. Individual component selections will be discussed below.</h5>
+    </div>
+    
+    <br> 
+
+    <h1 class="headings">Component Selection</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>Thermoelectric coolers were selected to provide thermal therapy to the hand, as they are the most feasible solution that can provide 
+                both heating and cooling in a compact manner.
+
+                Thermoelectric coolers exhibit the Peltier effect. This means that when a voltage is applied to the device, 
+                heat moves from one side to the other side, similar to an air conditioner. This results in one side being hot and one side being cold. 
+                The good thing about thermoelectric coolers in this application is that, when the voltage is reversed, the same side that was cold now turns 
+                hot and the side that was hot now turns cold. The bad thing is that these devices are extremely energy inefficient; a large amount of power is 
+                typically required to power these devices. At the same time, this heat pumping mechanism is additive, meaning that as heat is pumped from the cold 
+                side to the hot side, it becomes harder and harder to keep that pumping mechanism going; it'll either require more and more power over time, or what 
+                is typically done is a heat-sink is attached to the device. What this heat-sink will do is it'll act almost like a fan: it'll move heat at a rate greater 
+                than or equal to the rate at which it is being moved from the cold side to the hot side. Thus, the same energy will be required over time to power our 
+                device.
+                
+                For our application, we placed one thermoelectric cooler on the MCP joint of the thumb, and four others between the DIP and PIP joints of the rest of the 
+                fingers. The coolers were coupled with an heat-sink set-up consisting of an aluminum fin heat-sink with fans placed on top.
+            </h5>
+        </div>
+        <div class="picture">
+            <img src="../images/tag-te-operation.PNG" alt="TE Operation">
+        </div>
+    </div>
+
+
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/tag-te-operation.PNG" alt="TAG Device Prototype">
+        </div>
+        <div class="paragraph">
+            <h2>Polarity Switching</h2>
+            <br>
+            <h5>
+                As previously mentioned, thermoelectric coolers can be tuned to hot or cold applications by flipping the polarity of the applied voltage. To do this, 
+                you can use a mechanical relay, which acts like a switch to flip the polarity of the voltage. The relay itself can be controlled through an Arduino - 
+                so if we want the thermoelectric cooler to be cold for 20 minutes and hot for 20 minutes, we program the Arduino to tell the relay to keep the same 
+                polarity for 20 minutes, then switch for 20 minutes, then cease operation.
+            </h5>
+            <br>
+            <h2>Power and Regulation</h2>
+            <br>
+            <h5>
+                Lithium ion batteries were used as they are commercially available at high power ratings and can be recharged. A total of 1.5V and 9A were required to 
+                power the thermoelectric coolers to the desired temperature. To control this, we used a voltage regulator.
+            </h5>
+            <br>
+            <h2>Temperature Monitoring</h2>
+            <br>
+            <h5>
+                We obviously don't want to burn/freeze the skin surface while we're doing this; sensors were placed at the area of thermoelectric cooler placement to 
+                monitor skin temperature. These sensors were fed back to the Arduino, where the Arduino would cease operation if a certain temperature was met or exceeded.
+            </h5>
+        </div>
+    </div>
+
+    <h1 class="headings">Results</h1>
+    <br>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>The device was tested on four subjects (group members) for 20 minutes cooling and 20 minutes heating to model device use. Skin surface temperatures 
+                saw a change in 13C and 16C on average while heating and cooling respectively, as seen on the right.
+
+                IRB review was not complete by the time testing was completed. The initial goal of the project was to test the device on patients with arthritis 
+                from a local therapist's office.
+            </h5>
+            <br>
+            <br>
+            <h5>
+                Our results were published and presented at the NEBEC Conference of 2017. At the time of writing, the PDF version of the submitted paper is no longer
+                openly available at the NEBEC website and must be purchased. 
+            </h5>
+        </div>
+        <div class="picture">
+            <img src="../images/tag-device-testing.PNG" alt="TAG Device Testing">
+        </div>
+    </div>
+</body>
+

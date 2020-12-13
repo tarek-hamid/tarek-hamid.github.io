@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet"> 
+    <link href="../assets/css/fontawesome-all.min.css" rel="stylesheet">
+    <title>Cardiovascular Surgery Optimization</title>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="../index.html" class="icon fas fa-3x fa-home fa-customize"></i></a>
+        </div>  
+        <div class = "header-text">
+            <h1 class="header-text">Cardiovascular Surgery Optimization</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr class="horizontal-line">
+
+    <div class="summary">
+        <h5>In this project, I designed an optimization along with three other biomedical engineers for a cardiovascular surgery 
+            conducted on babies with a disorder known as hypoplastic left heart syndrome.
+
+        </h5>
+    </div>
+    
+    <hr class="horizontal-line">
+
+    <!-- Background  -->
+    <h1 class="headings">Background</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>If you've never learned about the anatomy of the heart, picture it as two chambers working in tandem. The left side, which 
+                houses the left ventricle and left atrium, pumps oxygenated blood for the rest of the blood to use as energy. The right side, 
+                which houses the right ventricle and right atrium, takes the blood that is devoid of oxygen and send it to lungs for oxygenation.
+                <br>
+                <br>
+                Hypoplastic left heart syndrome is a congenital disorder which causes a marked decrease in left ventricle volume; so much so that the 
+                contribution from the compartment is considered negligible (note the picture on the right, left ventricle size is substantially reduced). 
+                Without the left ventricle, oxygenated blood can't get to thetissues that need it, which means no nutrients and eventually, tissue death. 
+                When the baby is in the womb this is fine, as nutrients are supplied through the mother. But, when the baby is born, the heart cannot 
+                function in a self-sufficient manner. Left untreated, it could be fatal..</h5>
+        </div>
+        <div class="picture">
+            <img src="../images/cardiovascular-heart.PNG" alt="CSO Heart">
+        </div>
+    </div>
+
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/cso-tcpc.PNG" alt="CSO TCPC">
+        </div>
+        <div class="paragraph">
+            <h5>The condition is usually treated through a three-step surgery known blandly as staged palliation, which occurs over 1.5 years approximately 
+                every 6 months. The survival rate for children at age 5 is about 70 percent and most of these children have normal growth and development.
+                <br>
+                <br>
+                Following the surgery, the two chamber heart is effectively converted into a single chamber heart. That single compartment now pumps 
+                oxygenated blood from the lungs to the rest of the body. The vessels that brought deoxygenated blood to the heart, the superior and inferior 
+                vena cava (SVC and IVC), are cut off from the heart and now connected to the pulmonary artery, which previously brought deoxygenated blood 
+                from the heart to the lungs to be oxygenated. At a high level, our heart now pumps oxygenated blood to the rest of the body, it flows back 
+                through the SVC and IVC into the pulmonary artery (without being pumped by the heart again like before the surgery) and into the lungs to be 
+                oxygenated, then flows back into the heart as oxygenated blood. And the cycle continues.
+                <br>
+                <br>
+                Our main focus will be on the top left side on the picture to the left. The cross-like shape connection with the IVC and SVC is what is 
+                called a total cavopulmonary connection, or TCPC for short.
+            </h5>
+        </div>
+    </div>
+
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>As you can imagine, while the surgery is generally successful, it doesn't come without complications. 
+                Patients often have to be monitored annually after surgery and their ability to exercise, or just do 
+                physically-taxing work, is significantly reduced. There have been a ton of optimizations that have been 
+                introduced to help alleviate this.
+                <br>
+                <br>
+                Let's go back to that cross-like shape. This is an area of importance in this surgery. Blood already travels 
+                relatively slowly in the veins. Now that we've removed an extra compartment in the heart, this problem is confounded.  
+                So what if we tried to help this issue by changing the way we attach the SVC and the IVC to the pulmonary artery?
+                <br>
+                <br>
+                Normally, these vessels are attached head-on, meaning that they stay theoretically as a straight cylindrical tube. 
+                Instead, let's connect them with a funnel-like extension, so that it opens up towards the pulmonary artery. This should theoretically do two things:
+                <br>
+                <br>
+                1. Decrease direct flow collision
+                <br>
+                <br>
+                2. Decrease downstream resistance
+            </h5>
+        </div>
+        <div class="picture">
+            <img src="../images/cso-offset.PNG" alt="CSO offset design">
+        </div>
+    </div>
+
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/cso-laminar-flow.PNG" alt="CSO laminar flow">
+        </div>
+        <div class="paragraph">
+            <h5>
+                What does direct flow collision and downstream resistance mean?
+                <br>
+                <br>
+                Section the blood (or any fluid, really) in your mind as a bunch of lines moving together (see the picture on the left). These are 
+                what are known as streamlines. In our cross-like model, we have blood moving down from the SVC and up from the IVC, eventually colliding 
+                in the middle and flowing into the left and right pulmonary arteries. When they collide, they lose energy. Let's use this analogy: imagine 
+                you're driving your car and a yield is coming up. Is it more energy-efficient for you to stop at the yield, then accelerate back to full speed? 
+                Or is it better to "roll" into the yield and accelerate from a higher speed already? Definitely the second one. Now when we imagine those streamlines 
+                in the SVC and IVC, they are directly colliding with each other and losing speed. If we introduce the funnel-like opening, they now have more room to 
+                operate; more streamlines follow the edge of the vessel and don't collide head-on with other streamlines, meaning they lose less speed when they eventually 
+                collide.
+                <br>
+                <br>
+                Downstream resistance is significantly easier to understand. Is it easier to push water through a tube that is five centimeters wide or ten centimeters wide? 
+                Simply put, the bigger the radius of the tube, the easier time we'll have pushing that fluid through, assuming everything else stays the same.
+            </h5>
+        </div>
+    </div>
+
+    <h1 class="headings">Model and Results</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>
+                The models on the right were built using SOLIDWORKS, which were intended to mimic the TCPC connection we talked about earlier. 
+                We had seven models: a control, and 10mm, 20mm, and 30mm funnels evaluated independently for the SVC and IVC.
+                <br>
+                <br>
+                What we found was that, with increasing radii of curvature (or in layman's terms, bigger funnels), downstream pressure was decreased. 
+                What we also found was that the streamlines converged along the funnel, increasing velocity relative to other models when the streamlines 
+                entered the left and right pulmonary artery. Take a look at the streamlines as they enter the collision area (this is more prominent in the 
+                IVC models): you can see that there are less colliding streamlines.
+                <br>
+                <br>
+                Using fluid energy loss equations, we calculated the energy loss to be decreased by an average of 21% in the SVC models and by an average 
+                of 38% in the IVC models, with as much as a 69% decrease in energy loss in the IVC models. This suggests there could be a huge potential 
+                area of application where we could increase flow performance parameters especially in the IVC using this optimization.
+            </h5>
+        </div>
+        <div class="picture">
+            <img src="../images/cso-models.PNG" alt="CSO Models">
+        </div>
+    </div>
+
+
+
+    <h1 class="headings">Importance and Conclusion</h1>
+
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/cso-baby.PNG" alt="CSO baby">
+        </div>
+        <div class="paragraph">
+            <h5>This surgery is pretty much the only option for children that are born with this condition, outside of a full heart transplant. 
+                So any optimization that can help improve post-surgical outcomes of these patients is important. While it may not entirely cure 
+                the condition, it'll help them until we find something that does.
+                <br>
+                <br>
+                If you want something a little more technical/detailed, check out our <a href="CardioDesignProjectPaperFinal.pdf">final paper</a> 
+                for this project.
+                <br>
+                <br>
+                Thank you to my collaborators in this project: Lauren Loggi, Christopher Gearhart, and August Pfluger, as well as Dr. Nguyen at The College of New Jersey.
+            </h5>
+        </div>
+    </div>
+</body>
+
