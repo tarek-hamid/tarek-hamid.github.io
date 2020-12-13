@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet"> 
     <link href="../assets/css/fontawesome-all.min.css" rel="stylesheet">
-    <title>Gait Analysis</title>
+    <title>Alohomora!</title>
 </head>
 <body>
     <div class="header">
@@ -11,7 +11,7 @@
             <a href="../index.html" class="icon fas fa-3x fa-home fa-customize"></i></a>
         </div>  
         <div class = "header-text">
-            <h1 class="header-text">Quantifying Neuromuscular Disease Progression Using Gait Analysis</h1>
+            <h1 class="header-text">Alohomora!</h1>
         </div>
     </div>
     <br>
@@ -19,99 +19,94 @@
     <hr class="horizontal-line">
 
     <div class="summary">
-        <h5>In this project, I used detrended fluctuation analysis, a non-linear signal processing technique, 
-        to analyze self-similarity of the gait stride to quantitatively assess neuromuscular degeneration with age and disease. 
+        <h5>In this project, I developed a system that can detect the Alohomora motion and open a (mystery) box.
         </h5>
     </div>
     
     <hr class="horizontal-line">
 
     <!-- Background  -->
-    <h1 class="headings">Background</h1>
+    <h1 class="headings">Purpose and Background</h1>
     <div class="flexbox-container">
         <div class="paragraph">
-            <h5>The gait cycle, defined as the time-frame between when one foot hits the ground and that same foot hits the ground again 
-                during normal locomotion, is an important physiological measure for physicians that is often used to evaluate the progression 
-                of musculoskeletal disorders. In the figure on the right, take note of the leg in black: when it hits the ground on the next step, 
-                a gait cycle (also known as stride interval) has been completed.</h5>
-        </div>
-        <div class="picture">
-            <img src="../images/gaitcycle.PNG" alt="Gait Cycle">
-        </div>
-    </div>
-    <div class="flexbox-container">
-        <div class="picture">
-            <img src="../images/gait-pattern.PNG" alt="Gait Pattern">
-        </div>
-        <div class="paragraph">
-            <h5>It is well known that the duration of the gait cycle exhibits fractal 
-                behavior. When a system is fractal in nature, this means that its dynamics 
-                exhibit an infinitely complex pattern that repeats over and over again, 
-                or is self-similar across all scales. For sure you have seen this in an 
-                architectural setting, as shown on the left. These types of patterns are 
-                known as fractal, since they are created using never-ending patterns that 
-                are self-similar. The gait cycle, as with many other systems in nature, 
-                exhibits this same behavior.
-            </h5>
-        </div>
-    </div>
-    <div class="flexbox-container">
-        <div class="paragraph">
-            <h5>The neural mechanism behind this fractal behavior is currently unknown. 
-                However, recent studies have reported a decrease in self-similarity of the 
-                gait cycle with age and disease progression, specifically with Parkinson’s 
-                disease and Huntington’s disease. Thus, evaluating self-similarity in the 
-                gait cycle in healthy patients, older patients, and diseased patients is 
-                helpful in understanding why this decrease occurs. Knowing where the 
-                degeneration comes from can help us intervene over the course of this d
-                egeneration faster.
+            <h5>My good friend's girlfriend is an avid Harry Potter fan. I decided to help him create something a little special for her birthday. We decided to jointly
+                create a wand that would open a box once the Alohomora spell is detected. I was in charge of the electrical/programming side of things.
+                <br>
+                <br>
+            If you're unfamiliar with Harry Potter, the Alohomora spell is one of the most famous spells in the series. The spell opens up something that 
+            is locked. 
+                <br>
+                <br>
+            The <a href="https://harrypotter.fandom.com/wiki/Unlocking_Charm">official way</a> to use this spell is a backwards S hand-motion and to say Alohomora.
             </h5>
         </div>
         <div class="picture">
-            <img src="../images/gait-brain.PNG" alt="Gait Brain">
+            <img src="../images/alohomora.gif" alt="Alohomora">
         </div>
     </div>
+    
     <div class="flexbox-container">
         <div class="picture">
-            <img src="../images/gait-dfa.PNG" alt="Gait DFA">
+            <img src="../images/arduino-ble.jpg" alt="Arduino BLE">
+            <h5>The Arduino BLE Sense</h5>
         </div>
         <div class="paragraph">
             <h5>
-                Detrended fluctuation analysis (DFA) is a non-linear signal processing 
-                technique that mathematically quantifies how self-similar a signal is. 
-                The detailed method behind this quantification can be found on 
-                <a href="https://physionet.org/content/dfa/1.0.0/">Physionet.</a>
-                
-                The result of DFA is a straight line plotted on a log-log plot, of which 
-                we are concerned with the slope. The value of the slope of this line tells 
-                us a great deal about how self-similar the signal is: a value of 1.0 
-                indicates 1/f fractal noise and a value of 0.5 indicates an uncorrelated 
-                signal.
+                The obvious way to solve this problem is to use an Arduino to detect the motion of the spell and send a wireless signal to another Arduino 
+                to open a box. Luckily, at the time of starting this project, the Arduino BLE Sense had just been released. 
+                <br>
+                <br>
+                This Arduino is particularly well-suited to the task, since it has both an on-board accelerometer and microphone for motion and sound detection.
+                Furthermore, lots of work has been released on creating and deploying models for these tiny embedded systems 
+                (<a href="https://www.amazon.com/TinyML-Learning-TensorFlow-Ultra-Low-Power-Microcontrollers/dp/1492052043">TinyML is a good place to look if you're interested</a>)
             </h5>
         </div>
     </div>
-    <h1 class="headings">Methods and Results</h1>
+
+    <h1 class="headings">System Design</h1>
+    <br>
+    <br>
+    <div class="picture">
+        <img src="../images/alohomora-system-design.PNG" alt="Alohomora System Design">
+    </div>
     <div class="summary">
-        <h5><a href="https://physionet.org/content/gaitdb/1.0.0/">Available data</a> from PhysioNet was used to evaluate the decrease in 
-            self-similarity in young, healthy patients, vs. old and diseased patients. MATLAB was used for signal 
-            analysis and processing.
+        <h5>
+            The general idea behind the system is to monitor the input signal (motion or voice) continuously and make a classifcation on that signal
+            (not Alohomora or Alohomora). Once that signal is detected, a wireless signal is sent to another Arduino that is attached to a servo. 
+            The servo then moves and allows opening of a box. 
         </h5>
     </div>
-    <div class="picture">
-        <img src="../images/gait-results.PNG" alt="Gait Results">
-    </div>
-    <h1 class="headings">Findings</h1>
-    <div class="summary">
-        <h5>The main finding of this analysis is that gait cycle self-similarity is 
-            decreased in elderly and Huntington’s (HD) patients relative to young, healthy 
-            patients. HD is characterized by atrophy of the basal ganglia. Thus, 
-            it is likely that the basal ganglia is highly involved in the regulation of fractal 
-            behavior exhibited in healthy patients. Further research is needed to validate and 
-            elaborate on these findings.
 
-            While this type of analysis has not yet elucidated the neural mechanisms behind the 
-            deterioration of self-similarity in the gait cycle with age and disease, it can prove a 
-            useful quantitative measure for the progression of these degenerative mechanisms.
+    <h1 class="headings">Testing</h1>
+    <div class="summary">
+        <h5>
+            Here's a (very) rough video taken on Snapchat of the wand working. We only used the wand handle, so the official wand looks much nicer. A better video will be taken
+            sometime in the near future (hopefully).
+        </h5>
+    </div>
+    <br>
+    <br>
+    <div class="picture">
+        <video width="540" height="400" controls>
+        <source src="../images/wand-video.MP4" type=video/mp4>
+        </video> 
+    </div>
+   
+    
+    
+    
+    <h1 class="headings">Future Work and Code</h1>
+    <div class="summary">
+        <h5>
+            There's still work to be done on the wand. While it is functional with just motion data, we would like to incorporate voice data 
+            as well (or just voice data, since it will be more specific to the user). This will be in progress over the next year or so. 
+            <br>
+            <br>
+            You can check-out the code for this project if you're interested in my <a href="https://github.com/tarek-hamid/magic-wand">GitHub</a>. 
+            <br>
+            <br>
+            Finally, I would like to link the tutorial for creating your own ML models using Arduino as it helped me immensely with this project: 
+            <a href="https://blog.arduino.cc/2019/10/15/get-started-with-machine-learning-on-arduino/">Getting started with machine learning on Arduino.</a>
         </h5>
     </div>
 </body>
