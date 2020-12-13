@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet"> 
+    <link href="../assets/css/fontawesome-all.min.css" rel="stylesheet">
+    <title>ECG HR Extraction</title>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="../index.html" class="icon fas fa-3x fa-home fa-customize"></i></a>
+        </div>  
+        <div class = "header-text">
+            <h1 class="header-text">ECG Heart Rate Extraction Using Signal Progressing</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr class="horizontal-line">
+
+    <div class="summary">
+        <h5>
+            In this project, I utilized the Pan-Tompkins algorithm to extract the QRS peak of an ECG signal in order to derive and 
+            calculate the heart rate of an ECG waveform.
+        </h5>
+    </div>
+    
+    <hr class="horizontal-line">
+
+    <!-- Background  -->
+    <h1 class="headings">Background</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>The electrocardiogram, otherwise known as the ECG or EKG, is a recording of the electrical potential of the heart. Analysis of this waveform, 
+                especially the finer nuances, is an important area of clinical treatment and an especially hot area in biomedical research today.
+                <br>
+                <br>
+                Heart rate (HR) is one of these important parameters with regards to cardiovascular diagnosis and prognosis. Recent studies suggest that resting HR, 
+                as well as transient changes, can be indicative of certain cardiovascular disorders and overall mortality. Thus, efficient signal processing algorithms
+                to derive heart rate from the ECG waveform are critical in effective clinical treatment. These algorithms can be coupled with existing wearables to 
+                drive continuous physiological monitoring with the goal of incorporating proactivity in consumer health.</h5>
+        </div>
+        <div class="picture">
+            <img src="../images/ecg-waveform.PNG" alt="ECG Waveform">
+        </div>
+    </div>
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/ecg-pan-tompkins.PNG" alt="ECG Pan Pan-Tompkins">
+        </div>
+        <div class="paragraph">
+            <h5>The Pan-Tompkins algorithm is a technique introduced back in 1985 that uses a relatively simple methodology for HR determination 
+                from the ECG. Since its introduction, the algorithm has been widely used in industrial and academic applications.
+                <br>
+                <br>
+                <br>
+                The algorithm works by extracting peaks (specifically, the QRS wave) of the waveform. The method is as follows:
+                <br>
+                <br>
+                1. Use a band-pass filter to filter out noise
+                <br>
+                <br>
+                2. Take the derivative of the time series
+                <br>
+                <br>
+                3. Square and take the mean of the result
+                <br>
+                <br>
+                The resultant waveform consists of identifiable peaks which are indicative of a QRS complex. Every one of these peaks is a heart-beat.
+            </h5>
+        </div>
+    </div>
+    <h1 class="headings">Methods and Results</h1>
+    <div class="summary">
+        <h5>This project is currently in progress. Please check back soon for details.
+        </h5>
+    </div>
+</body>
+
