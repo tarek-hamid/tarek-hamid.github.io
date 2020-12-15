@@ -47,15 +47,18 @@ h5 {
 
 .fa-customize {
     color: white;
-    float: left;
     flex: 1;
-    margin-left: 90%;
 }
 
 .fa-customize:hover{
     color:black;
 }
 
+.fa-customize:before{
+    position: absolute;
+    left: 100px;
+    top: 70px;
+}
 .summary{
     margin-left: 300px;
     margin-right: 300px;
