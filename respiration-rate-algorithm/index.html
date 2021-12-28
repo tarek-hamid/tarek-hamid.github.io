@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet"> 
+    <link href="../assets/css/fontawesome-all.min.css" rel="stylesheet">
+    <title>Respiration Rate Algorithm</title>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="../index.html" class="icon fas fa-3x fa-home fa-customize"></i></a>
+        </div>  
+        <div class = "header-text">
+            <h1 class="header-text">Respiration Rate Algorithm</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <hr class="horizontal-line">
+
+    <div class="summary">
+        <h5>In this project, I analyzed breathing signals from a non-contact vitals system monitor to extract breathing rates. 
+            <br>
+            <br>
+            Repository with code can be found <a href="https://github.com/tarek-hamid/respiration-rate-algorithm" target="_blank">here</a>.
+        </h5>
+    </div>
+    
+    <hr class="horizontal-line">
+
+    <!-- Background  -->
+    <h1 class="headings">Background</h1>
+    <div class="summary">
+        <h5>The following project was a candidate assessment where I was given several data-sets consisting of breathing signals
+            and was asked to generate an algorithm to determine the overall respiration rate. 
+            Due to IP concerns, I cannot openly share the data. However, I would like to present the methodology as well as my code
+            for generating a solution.
+            <br>
+            <br>
+            The data provided was infant breathing signals from a non-contact vitals montioring system using Doppler-based radio-frequency waves. 
+            Several papers have suggested a similar kind of system, which I will leave linked here 
+            [<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5713025/" target="_blank">Hall et. al</a>, 
+            <a href="https://pubmed.ncbi.nlm.nih.gov/10999382/" target="_blank">Matthews et. al</a>]. 
+        </h5>
+    </div>
+
+    <h1 class="headings">Methodology</h1>
+    <br>
+    <br>
+    <div class="picture">
+        <img src="../images/respiration-algorithm-block-diagram.png" alt="EMG System Design">
+    </div>
+    <div class="summary">
+        <h5>Above is a block diagram form of the proposed solution. Specific sections below detail the thought process and analysis of the waveform at each step.</h5>
+    </div>
+    
+    <br> 
+
+    <h1 class="headings">Data Visualization</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>
+                Using the provided sampling frequency of the signal, the time scale of the signal was reconstructed and one minute of data was extracted and plotted.
+                <br>
+                <br>
+                It is clear this signal requires some amount of processing to reduce noise and smooth the identified breathing peaks. As such, the FFT of the signal
+                was computed and plotted in the next step.
+            </h5>
+        </div>
+        <div class="picture">
+            <img src="../images/respiration-raw-signal.png" alt="Respiration Raw Signal">
+        </div>
+    </div>
+
+    <h1 class="headings">Pre-processing - Spectral Analysis</h1>
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/respiration-spectral-analysis.PNG" alt="Respiration Spectral Analysis">
+        </div>
+        <div class="paragraph">
+            <h5>
+                The one-sided DFT of the signal was computed and plotted as shown on the left. The frequency axis was normalized
+                as MATLAB uses normalized frequency as parameters for its filter functions.
+                <br>
+                <br>
+                Analysis of this spectral plot does require some domain knowledge to understand what we're looking at. It is known that the frequency range of respiratory
+                signals is relatively low at approximately 0.1-0.5 hz
+                (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6264115/#:~:text=The%20normal%20respiratory%20frequency%20range,65%20bpm%20has%20been%20considered." target="_blank">source</a>).
+                The resolution of the graph on the left is not great, but it is likely this is the dominant frequency component.
+                Thus, I designed a low-pass filter at a normalized cut-off frequency of 0.1 pi rads/sample to filter out any higher frequency components
+                that may be contaminating the signal.
+            </h5>
+        </div>
+    </div>
+
+    <h1 class="headings">Pre-processing - Filtering</h1>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h5>
+                I used a 10th order Butterworth filter at a 0.1 normalized cutoff frequency to reduce noise. The Butterworth filter is the most ideal filter
+                to use in this case as it has a relatively low amount of attenuation in the passband as opposed to other traditional linear filters (more on that 
+                <a href="https://basedados.aeroubi.pt/pluginfile.php/610/mod_resource/content/0/ClassicFilters_BTTWRTH_BSSL_CHBCHV_LPTC.pdf" target="_blank">here</a>).
+                <br>
+                <br>
+                The plot of the right shows the raw respiration signal on the top and the filtered respiration signal on the bottom; significantly better!
+            </h5>
+        </div>
+        <div class="picture">
+            <img src="../images/respiration-filtered-signal.png" alt="Respiration Rate Filtered Signal">
+        </div>
+    </div>
+
+    <h1 class="headings">Algorithm Development</h1>
+    <div class="summary">
+        <h5>
+            I employed two different algorithms to calculate the respiration rate of the filtered signal:
+            <br>
+            <br>
+            1. A simple peak detection algorithm.
+            <br>
+            2. A moving average filter followed by the same peak detection algorithm. 
+            <br>
+            <br>
+            Pros and cons of each method are discussed below. These algorithms are not intended to be production-ready 
+            or particularly robust, but simply a starting point towards refinement of a more advanced algorithm
+            following several trial-validation cycles. The figure below shows the output of both algorithms on a test data-set.
+            Specific accuracy of both algorithms could not be verified as true breathing rate figures were not provided. However, these 
+            rates were accurate based on review with the team.
+        </h5>
+    </div>
+    <div class="picture">
+        <img src="../images/respiration-rate-output.PNG" alt="Respiration Rate Output">    
+    </div>
+    <div class="flexbox-container">
+        <div class="paragraph">
+            <h2>Algorithm 1 - Simple Peak Detection</h2>
+            <br>
+            <br>
+            <h5>
+                The peak detection algorithm used a relatively simple method to detect peaks in the waveform. 
+                The algorithm traverses each point in the given dataset and compares the previous data point and the next data
+                point to the current. If the current data point is greater than both neighboring data points, the current data point
+                is identified as a peak. 
+                <br>
+                <br>
+                After traversing the entire data-set, the total peak count is then divided by the time frame to calculate the overall respiration
+                rate.
+                <br>
+                <br>
+                Considerations: 
+                <br>
+                <br>
+                - Not particularly robust. Will detect small peaks and multiple peaks within a single peak. However,
+                this may be actually a positive considering infantile breathing is very rapid and can be very weak.
+                <br>
+                <br>
+                - Efficiency can possibly be improved, especially in low power embedded settings. The current algorithm
+                will work in linear time for N inputs. 
+                <br>
+                <br>
+                - A baseline can be used as a threshold of comparsion (such as the mean of the signal) to ignore
+                small detected peaks. Again, this must be concerned in relation to the application. 
+            </h5>
+        </div>
+        <div class="paragraph">
+            <h2>Algorithm 2 - Moving Average Filter</h2>
+            <br>
+            <br>
+            <h5>
+                The moving average filter uses the same methodology as algorithm 1 with one key difference; prior to peak determination, 
+                a moving average filter is applied to the data-set to smooth transients.
+                <br>
+                <br>
+                The moving average filter helps with removing noisy/transient data, such as multiple peaks occuring with a larger
+                peak.
+                <br>
+                <br>
+                <br>
+                Considerations: 
+                <br>
+                <br>
+                - A detriment when lower quality/weaker signals are recorded.
+                <br>
+                <br>
+                - Efficiency is worse off, since the algorithm must traverse the entire vector first to calculate the moving average
+                and then again to calculate the peaks. This will work in exponential time (N^2 for N inputs)
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </h5>
+        </div>
+    </div>
+</body>
+
