@@ -37,7 +37,7 @@
             for generating a solution.
             <br>
             <br>
-            The data provided was infant breathing signals from a non-contact vitals montioring system using Doppler-based radio-frequency waves. 
+            The data provided was infant breathing signals from a non-contact vitals monitoring system using Doppler-based radio-frequency waves. 
             Several papers have suggested a similar kind of system, which I will leave linked here 
             [<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5713025/" target="_blank">Hall et. al</a>, 
             <a href="https://pubmed.ncbi.nlm.nih.gov/10999382/" target="_blank">Matthews et. al</a>]. 
@@ -72,7 +72,12 @@
         </div>
     </div>
 
-    <h1 class="headings">Pre-processing - Spectral Analysis</h1>
+    <h1 class="headings">Pre-processing - Strategy</h1>
+    <h5 class="headings">
+        I decided to use two different methods to smooth the data, one frequency-domain analysis method and one time-domain analysis method. Both methods are detailed below.
+    </h5>
+    <br>
+    <h2 class="headings">Frequency Domain Analysis</h2>
     <div class="flexbox-container">
         <div class="picture">
             <img src="../images/respiration-spectral-analysis.PNG" alt="Respiration Spectral Analysis">
@@ -89,110 +94,91 @@
                 The resolution of the graph on the left is not great, but it is likely this is the dominant frequency component.
                 Thus, I designed a low-pass filter at a normalized cut-off frequency of 0.1 pi rads/sample to filter out any higher frequency components
                 that may be contaminating the signal.
+                <br>
+                <br>
+                I used a 5th order Butterworth filter at a 0.1 normalized cutoff frequency to reduce noise. The Butterworth filter is the most ideal filter
+                to use in this case as it has a relatively low amount of attenuation in the passband as opposed to other traditional linear filters (more on that 
+                <a href="https://basedados.aeroubi.pt/pluginfile.php/610/mod_resource/content/0/ClassicFilters_BTTWRTH_BSSL_CHBCHV_LPTC.pdf" target="_blank">here</a>).
             </h5>
         </div>
     </div>
-
-    <h1 class="headings">Pre-processing - Filtering</h1>
+    <h2 class="headings">Time Domain Analysis</h2>
     <div class="flexbox-container">
         <div class="paragraph">
             <h5>
-                I used a 10th order Butterworth filter at a 0.1 normalized cutoff frequency to reduce noise. The Butterworth filter is the most ideal filter
-                to use in this case as it has a relatively low amount of attenuation in the passband as opposed to other traditional linear filters (more on that 
-                <a href="https://basedados.aeroubi.pt/pluginfile.php/610/mod_resource/content/0/ClassicFilters_BTTWRTH_BSSL_CHBCHV_LPTC.pdf" target="_blank">here</a>).
-                <br>
-                <br>
-                The plot of the right shows the raw respiration signal on the top and the filtered respiration signal on the bottom; significantly better!
+            For the time domain analysis, I used a moving average filter with a 7-point centered moving window that was used iteratively over the length of the signal three times. 
+            While the data presented does not necessarily need this many iterations as it is relatively smooth over one pass, noisier data-sets that were provided,
+            but not presented, required this level of smoothing. 
+            <br>
+            <br>
+            The result of both filtering methods is presented on the right with reasonable levels of agreement. The low-pass filtered data is obviously lagged slightly in time
+            due to filter phase shifts.
             </h5>
         </div>
         <div class="picture">
-            <img src="../images/respiration-filtered-signal.png" alt="Respiration Rate Filtered Signal">
+            <img src="../images/respiration-filtered-signal.png" alt="Respiration Filtered Signal">
         </div>
     </div>
 
-    <h1 class="headings">Algorithm Development</h1>
-    <div class="summary">
-        <h5>
-            I employed two different algorithms to calculate the respiration rate of the filtered signal:
-            <br>
-            <br>
-            1. A simple peak detection algorithm.
-            <br>
-            2. A moving average filter followed by the same peak detection algorithm. 
-            <br>
-            <br>
-            Pros and cons of each method are discussed below. These algorithms are not intended to be production-ready 
-            or particularly robust, but simply a starting point towards refinement of a more advanced algorithm
-            following several trial-validation cycles. The figure below shows the output of both algorithms on a test data-set.
-            Specific accuracy of both algorithms could not be verified as true breathing rate figures were not provided. However, these 
-            rates were accurate based on review with the team.
-        </h5>
+    <h1 class="headings">Algorithm Development - Mean Respiration Rate</h1>
+    <div class="flexbox-container">
+        <div class="picture">
+            <img src="../images/respiration-rate-output.PNG" alt="Respiration Rate Output">
+        </div>
+        <div class="paragraph">
+            <h5>
+                I used a simple peak detection algorithm to calculate the mean respiratory rate over the length of the sampled signal. The algorithm iterates over the input signal
+                 point by point and compares the previous sample and the next sample to the current sample; if they are both less than the current sample, a peak, or breath, is recorded. 
+                <br>
+                <br>
+                It is important to note that the algorithm is not intended to be production-ready or particularly robust, but simply a starting point towards refinement of a more advanced algorithm 
+                following several trial-validation cycles. 
+                <br>
+                <br>
+                The figure to the left shows the output of both algorithms on a test data-set. While no ground-truth was provided, it seems that both algorithms were right on the money 
+                in determining the respiration rate, with the low-pass filter registering an extra breath at the beginning of the data-set. This can be accounted for by 
+                throwing away the first set of sample data due to filter delay. 
+            </h5>
+        </div>
     </div>
-    <div class="picture">
-        <img src="../images/respiration-rate-output.PNG" alt="Respiration Rate Output">    
-    </div>
+
+    <h1 class="headings">Algorithm Development - Instantaneous Respiration Rate</h1>
     <div class="flexbox-container">
         <div class="paragraph">
-            <h2>Algorithm 1 - Simple Peak Detection</h2>
-            <br>
-            <br>
             <h5>
-                The peak detection algorithm used a relatively simple method to detect peaks in the waveform. 
-                The algorithm traverses each point in the given dataset and compares the previous data point and the next data
-                point to the current. If the current data point is greater than both neighboring data points, the current data point
-                is identified as a peak. 
+                The instantaneous respiration rate was calculated by determining the time between detected breaths when traversing through the input signal. 60 divided by this time period
+                then gives the instantaneous respiration rate. A graph of the calculated instantaneous rates is shown to the right. Again, the graphs are fairly agreeable, ignoring the 
+                start-up delay in the low-pass filter graph. 
                 <br>
                 <br>
-                After traversing the entire data-set, the total peak count is then divided by the time frame to calculate the overall respiration
-                rate.
-                <br>
-                <br>
-                Considerations: 
-                <br>
-                <br>
-                - Not particularly robust. Will detect small peaks and multiple peaks within a single peak. However,
-                this may be actually a positive considering infantile breathing is very rapid and can be very weak.
-                <br>
-                <br>
-                - Efficiency can possibly be improved, especially in low power embedded settings. The current algorithm
-                will work in linear time for N inputs. 
-                <br>
-                <br>
-                - A baseline can be used as a threshold of comparsion (such as the mean of the signal) to ignore
-                small detected peaks. Again, this must be concerned in relation to the application. 
+                A point of contention during the design of this algorithm was whether or not to keep the calculated instantaneous rate discrete, or to create a continuous time signal 
+                by interpolating between data points and filling in the gaps. Ultimately, it was decided to keep it discrete as the goal of the algorithm was to provide a number that would
+                be presented on a UI that is sampled at a fixed rate, presumably at a rate similar to the respiration rate. 
             </h5>
         </div>
-        <div class="paragraph">
-            <h2>Algorithm 2 - Moving Average Filter</h2>
-            <br>
-            <br>
-            <h5>
-                The moving average filter uses the same methodology as algorithm 1 with one key difference; prior to peak determination, 
-                a moving average filter is applied to the data-set to smooth transients.
-                <br>
-                <br>
-                The moving average filter helps with removing noisy/transient data, such as multiple peaks occuring with a larger
-                peak.
-                <br>
-                <br>
-                <br>
-                Considerations: 
-                <br>
-                <br>
-                - A detriment when lower quality/weaker signals are recorded.
-                <br>
-                <br>
-                - Efficiency is worse off, since the algorithm must traverse the entire vector first to calculate the moving average
-                and then again to calculate the peaks. This will work in exponential time (N^2 for N inputs)
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-            </h5>
+        <div class="picture">
+            <img src="../images/respiration-rate-graph.png" alt="Respiration Rate Graph">
         </div>
+    </div>
+
+    <h1 class="headings">Discussion and Considerations</h1>
+    <div class="summary">
+        <h5>
+            Obviously, this algorithm is not the most robust and several improvements/considerations can be made with respect to usage in the product as well as accuracy while testing.
+            Several improvements and considerations that come to mind are, for example: 
+            <br>
+            <br>
+            1. Using the mean of the signal as a threshold baseline to detect a peak, rather comparing data neighbors. This would help improve algorithm efficiency/spatial complexity, but may
+            cause issues when the detected signal is extremely noisy or weak. 
+            <br>
+            <br>
+            2. Taking the first derivative of the filtered signal and detecting zero crossings, which may also help improve algorithm efficiency by sorting the data and only selecting timestamps
+            where the value is zero.
+            <br>
+            <br>
+            3. As discussed previously, interpolating between calculated instantaneous respiratory rates to produce a more continuous signal if this graph is something that is provided 
+            to customers and is seen as more beneficial. 
+        </h5>
     </div>
 </body>
 
