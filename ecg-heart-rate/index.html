@@ -20,8 +20,7 @@
 
     <div class="summary">
         <h5>
-            In this project, I utilized the Pan-Tompkins algorithm to extract the QRS peak of an ECG signal in order to derive and 
-            calculate the heart rate of an ECG waveform. 
+            In this project, I utilized the Pan-Tompkins algorithm to extract heart rate from the EKG waveform.
         </h5>
     </div>
     
@@ -31,12 +30,12 @@
     <h1 class="headings">Background</h1>
     <div class="flexbox-container">
         <div class="paragraph">
-            <h5>The electrocardiogram, otherwise known as the ECG or EKG, is a recording of the electrical potential of the heart. Analysis of this waveform, 
-                especially the finer nuances, is an important area of clinical treatment and an especially hot area in biomedical research today.
+            <h5>The electrocardiogram, otherwise known as the ECG or EKG, is a recording of the electrical potential of the heart. Analysis of this waveform
+                has proved to be an important diagnostic tool for 
                 <br>
                 <br>
-                Heart rate (HR) is one of these important parameters with regards to cardiovascular diagnosis and prognosis. Recent studies suggest that resting HR, 
-                as well as transient changes, can be indicative of certain cardiovascular disorders and overall mortality. Thus, efficient signal processing algorithms
+                Heart rate (HR) is one of these important parameters with regards to cardiovascular diagnosis and prognosis. Recent studies suggest that resting HR, specifically
+                heart rate variability (HRV), can be indicative of certain cardiovascular disorders and overall mortality, as well as an indication of recovery. Thus, efficient signal processing algorithms
                 to derive heart rate from the ECG waveform are critical in effective clinical treatment. These algorithms can be coupled with existing wearables to 
                 drive continuous physiological monitoring with the goal of incorporating proactivity in consumer health.</h5>
         </div>
@@ -62,7 +61,7 @@
                 2. Take the derivative of the time series
                 <br>
                 <br>
-                3. Square and take the mean of the result
+                3. Square and smooth the result using moving window integration
                 <br>
                 <br>
                 The resultant waveform consists of identifiable peaks which are indicative of a QRS complex. Every one of these peaks is a heart-beat.
