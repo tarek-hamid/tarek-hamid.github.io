@@ -89,14 +89,13 @@
                 <br>
                 <br>
                 Analysis of this spectral plot does require some domain knowledge to understand what we're looking at. It is known that the frequency range of respiratory
-                signals is relatively low at approximately 0.1-0.5 hz
-                (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6264115/#:~:text=The%20normal%20respiratory%20frequency%20range,65%20bpm%20has%20been%20considered." target="_blank">source</a>).
-                The resolution of the graph on the left is not great, but it is likely this is the dominant frequency component.
-                Thus, I designed a low-pass filter at a normalized cut-off frequency of 0.1 pi rads/sample to filter out any higher frequency components
-                that may be contaminating the signal.
+                signals is relatively low at approximately 0.1-0.5 hz (around 10-30 breaths/min).
+                However, infantile breathing rate can vary much more wildly, with breathing rates of 0.3-1 hz (20-60 breaths/min). 
+                Based on the graph on the left, it looks this is the dominant frequency on the signal (sampling frequency is about 17hz, so 0.1 normalized is around 1hz).
+                Thus, I designed a bandpass filter with a passband of 0.01-0.1hz (normalized) to reduce noise.
                 <br>
                 <br>
-                I used a 5th order Butterworth filter at a 0.1 normalized cutoff frequency to reduce noise. The Butterworth filter is the most ideal filter
+                I used a 5th order Butterworth filter with the above specifications to reduce noise. The Butterworth filter is the most ideal filter
                 to use in this case as it has a relatively low amount of attenuation in the passband as opposed to other traditional linear filters (more on that 
                 <a href="https://basedados.aeroubi.pt/pluginfile.php/610/mod_resource/content/0/ClassicFilters_BTTWRTH_BSSL_CHBCHV_LPTC.pdf" target="_blank">here</a>).
             </h5>
@@ -106,11 +105,7 @@
     <div class="flexbox-container">
         <div class="paragraph">
             <h5>
-            For the time domain analysis, I used a moving average filter with a 7-point centered moving window that was used iteratively over the length of the signal three times. 
-            While the data presented does not necessarily need this many iterations as it is relatively smooth over one pass, noisier data-sets that were provided,
-            but not presented, required this level of smoothing. 
-            <br>
-            <br>
+            For the time domain analysis, I used a moving average filter with a 10-point centered moving window.
             The result of both filtering methods is presented on the right with reasonable levels of agreement. The low-pass filtered data is obviously lagged slightly in time
             due to filter phase shifts.
             </h5>
@@ -135,9 +130,9 @@
                 following several trial-validation cycles. 
                 <br>
                 <br>
-                The figure to the left shows the output of both algorithms on a test data-set. While no ground-truth was provided, it seems that both algorithms were right on the money 
-                in determining the respiration rate, with the low-pass filter registering an extra breath at the beginning of the data-set. This can be accounted for by 
-                throwing away the first set of sample data due to filter delay. 
+                The figure to the left shows the output of both algorithms on a test data-set. While no ground-truth was provided, it seems that both algorithms are in agreement with respect
+                to the reported respiration rate that seems to be consistent with normal infant breathin rates. The low-pass filter registered an extra breath at the beginning of the data-set, 
+                which can be accounted for by throwing away the first set of sample data due to filter delay. 
             </h5>
         </div>
     </div>
