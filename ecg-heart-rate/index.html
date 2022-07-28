@@ -76,15 +76,19 @@
                 A <a target="_blank" href="https://github.com/tarek-hamid/hr-extraction-pan-tompkins/blob/main/pantompkins.py">Python script</a> and
                 <a target="_blank" href="https://github.com/tarek-hamid/hr-extraction-pan-tompkins/blob/main/test_pan_tompkins.ipynb">Jupyter notebook</a> are provided
                 to show the methods and use, respectively. 
-                
+                <br>
+                <br>
                 Some comments regarding implementation:
                 <br>
+            <br>
                 1. The original literature suggests several transfer functions for use specifically in signals that are sampled at 200hz. The data I 
                 retreived from PhysioNet was sampled at 360hz. The workaround here is to resample signals to the desired frequency, or use a generalized form of the
                 algorithm and test its performance. I used the latter approach to reduce computational cost and avoid typical problems that may occur during resampling. 
                 <br>
+            <br>
                 2. My implementation of this algorithm should be considered barebones for an industry-standard implementation; there are far more sophisticated techniques
                 that are utilized to improve algorithm performance, especially in the presence of noise, such as:
+                <br>
                 <br>
                 &emsp; a. Introduce a refactory period of 200ms when a peak is detected so no erroneous peaks are counted.
                 &emsp; b. Introduce adapative threholds based on surrounding noise levels.
