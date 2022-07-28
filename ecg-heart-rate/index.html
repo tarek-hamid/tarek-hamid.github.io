@@ -69,10 +69,28 @@
                 The resultant waveform consists of identifiable peaks which are indicative of a QRS complex. Every one of these peaks is a heart-beat.
             </h5>
         </div>
-    <h1 class="headings">Methods and Results</h1>
-    <div class="summary">
-        <h5>This project is currently in progress. Please check back soon for details.
-        </h5>
+    <h1 class="headings">Implementation</h1>
+    <div class="flexbox-container">
+        <div class="summary">
+            <h5>
+                My implementation of this algorithm can be found in my GitHub.
+                A <a target="_blank" href="https://github.com/tarek-hamid/hr-extraction-pan-tompkins/blob/main/pantompkins.py">Python script</a> and
+                <a target="_blank" href="https://github.com/tarek-hamid/hr-extraction-pan-tompkins/blob/main/pantompkins.py">Jupyter notebook</a> are provided
+                to show the methods and use, respectively. 
+                
+                Some comments regarding implementation:
+                1. The original literature suggests several transfer functions for use specifically in signals that are sampled at 200hz. The data I 
+                retreived from PhysioNet was sampled at 360hz. The workaround here is to resample signals to the desired frequency, or use a generalized form of the
+                algorithm and test its performance. I used the latter approach to reduce computational cost and avoid typical problems that may occur during resampling. 
+                2. My implementation of this algorithm should be considered barebones for an industry-standard implementation; there are far more sophisticated techniques
+                that are utilized to improve algorithm performance, especially in the presence of noise, such as:
+                <br>
+                &emsp; a. Introduce a refactory period of 200ms when a peak is detected so no erroneous peaks are counted.
+                &emsp; b. Introduce adapative threholds based on surrounding noise levels.
+                &emsp; c. Introduce a way to detect high amplitude T waves that may be counted as QRS waves. 
+                I'll be working on implementing these more advanced methods when I get the chance. Please feel free to contact me to check on progress. 
+            </h5>
+        </div>
     </div>
 </body>
 
