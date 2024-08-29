@@ -111,7 +111,7 @@
     {
       "name": "Data Science Tools / Packages",
       "level": "Master",
-      "icon": "fa-solid fa-hashtag",
+      "icon": "fa-solid fa-magnifying-glass-chart",
       "keywords": [
         "Jupyter",
         "NumPy",
@@ -123,7 +123,7 @@
     },
     {
       "name": "Cloud / DB Management",
-      "icon": "fa-solid fa-hashtag",
+      "icon": "fa-solid fa-database",
       "keywords": [
         "AWS",
         "Azure",
@@ -135,7 +135,7 @@
     },
     {
       "name": "Sensor Data",
-      "icon": "fa-solid fa-hashtag",
+      "icon": "fa-solid fa-heart-pulse",
       "keywords": [
         "PPG",
         "ECG",
