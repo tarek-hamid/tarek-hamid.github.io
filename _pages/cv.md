@@ -7,4 +7,5 @@ nav_order: 5
 description: Please reach out to learn more.
 toc:
   sidebar: left
+redirect_to: /assets/pdf/cv.pdf
 ---
