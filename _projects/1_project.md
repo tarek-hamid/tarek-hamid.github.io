@@ -6,6 +6,6 @@ img: assets/img/dermaglow.png
 importance: 1
 category: PhD
 related_publications: false
+external_url: "https://dl.acm.org/doi/10.1145/3729474"
 ---
 
-Details to be added after peer-review. Please reach out for more details!
