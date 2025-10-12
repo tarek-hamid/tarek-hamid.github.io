@@ -23,3 +23,23 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
+
+/* ==========================================================
+   Normalize project card image sizing
+   ========================================================== */
+
+.card-img-top,
+.card-img {
+  width: 100%;
+  height: 215px; /* adjust to desired uniform height */
+  object-fit: fill; /* crop edges instead of distorting */
+  object-position: center;
+  border-radius: 8px; /* optional for smoother corners */
+}
+
+/* Ensure all project cards are visually consistent */
+.card.h-100 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
