@@ -21,4 +21,4 @@ My research focuses on developing signal processing and machine learning algorit
 
 In general, I am interested in exploring how enhanced spatial and contextual resolution in wearable sensing can improve detection of physiological biomarkers. My recent work explores how richer optical information can reveal physiological context that traditional PPG cannot capture. By directly sensing confounders and the underlying mechanisms of the PPG waveform, and by incorporating multi-site measurements, alternative form factors, and environmental context, we can supply the additional information needed for systems to generalize reliably across diverse users and real-world conditions.
 
-Always open to collaborating and contributing to meaningful projects - feel free to reach out! test
+Always open to collaborating and contributing to meaningful projects - feel free to reach out!
