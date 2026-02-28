@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tarek Hamid">
+    <meta property="og:title" content="Tarek Hamid">
+    <meta property="og:description" content="PhD Candidate, University of Virginia">
+    <title>Tarek Hamid</title>
+    <link rel="icon" type="image/png" href="files/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .research-topics {
+            display: flex;
+            gap: 28px;
+            margin: 20px 0 12px 0;
+        }
+        .research-topic {
+            flex: 1;
+            min-width: 0;
+        }
+        .research-topic-media {
+            width: 100%;
+            padding-bottom: 56%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+        }
+        .research-topic-caption {
+            margin-top: 8px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        @media (max-width: 600px) {
+            .research-topics {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="header noselect">
+    <div class="header-div content row">
+        <div class="header-profile-picture"></div>
+        <div class="header-text">
+            <div class="header-name">
+                <h1>Tarek Hamid</h1>
+            </div>
+            <div class="header-subtitle">
+                PhD Candidate, University of Virginia
+            </div>
+            <div class="header-links">
+                <a class="btn" href="mailto:hamidtarek3@gmail.com">Email</a> /
+                <a class="btn" target="_blank" href="https://scholar.google.com/citations?user=07cpc1QAAAAJ&hl=en">Google Scholar</a> /
+                <a class="btn" target="_blank" href="https://github.com/tarek-hamid/">GitHub</a> /
+                <a class="btn" target="_blank" href="https://www.linkedin.com/in/tarekhamid/">LinkedIn</a> /
+                <a class="btn" target="_blank" href="files/cv.pdf">CV</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div>
+        <p>
+            I am a PhD candidate at the University of Virginia, advised by Professor 
+            <a class="btn" target="_blank" href="https://watsonresearchlab.org/">Amanda Watson</a>. 
+            Before starting my PhD, I held multiple roles at companies such as 
+            <a class="btn" target="_blank" href="https://www.jnj.com/">Johnson & Johnson</a>, 
+            <a class="btn" target="_blank" href="https://soteradigitalhealth.com/">Sotera Digital Health</a>,
+            <a class="btn" target="_blank" href="https://www.jpmorganchase.com/">JPMorgan Chase</a>, 
+            and the
+            <a class="btn" target="_blank" href="https://www.war.gov/">DoD</a>.
+            I received my Masters in Biomedical Engineering from 
+            <a class="btn" target="_blank" href="https://www.jhu.edu/">Johns Hopkins University</a>
+            and my Bachelors in Biomedical Engineering from
+            <a class="btn" target="_blank" href="https://tcnj.edu/">The College of New Jersey</a>.
+        </p>
+        <p>
+            I believe that everyone deserves to live a happy and healthy life in the pursuit of their goals and dreams. 
+            That belief drives my research: if we can make health monitoring more accurate and accessible, we can give people the tools to take 
+            care of themselves and the people they love. To this end, the main focus of my research has been utilizing broad-spectrum PPG and 
+            machine learning/signal processing techniques to detect new biomarkers using wearable sensors. 
+        </p>
+    </div>
+
+    <div>
+        <div class="research-topics noselect">
+            <div class="research-topic">
+                <div class="research-topic-media" style="background-image: url(files/research-1.png);"></div>
+                <div class="research-topic-caption">
+                    <span>Using <a class="btn" target="_blank" href="https://dl.acm.org/doi/10.1145/3569502">broad-spectrum PPG,</a> 
+                        we are currently working on uncovering new biomarkers such as skin-tone and glucose.</span><br/>
+                </div>
+            </div>
+            <div class="research-topic">
+                <div class="research-topic-media" style="background-image: url(files/research-2.png);"></div>
+                <div class="research-topic-caption">
+                    <span>Broad spectrum sensing exploits differential wavelength penetration to disentangle physiological signals from noise.
+                    </span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <p>
+            Outside of research, I enjoy playing basketball, lifting, baking, and cooking. I am also passionate about mentorship and volunteering.
+        </p>
+    </div>
+
+    <div>
+        <h2 class="noselect">Publications and preprints</h2>
+        <p>Papers sorted by recency. Representative papers are <span style="background-color: #fff8df">highlighted</span>.</p>
+
+        <!-- ═══ Dermaglow ═══ -->
+        <div class="highlight publication row clearfix">
+            <div class="row-media" style="background-image: url(files/dermaglow-main.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" target="_blank" href="https://dl.acm.org/doi/abs/10.1145/3729474">DermaGlow: Objective Quantification of Melanin, Erythema and Skin-tone Using Wearable Optical Spectroscopy</a><br/>
+                <span class="bold">Tarek Hamid</span>, Patricia Flores, Jane Byun, Elizabeth C Courtney, Kyle C Quinn, Amanda Watson<br/>
+                <span class="italic">Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (<a target="_blank" href="https://dl.acm.org/journal/imwut">IMWUT</a></span>), 2025<br/>
+                <a class="btn btn-red" target="_blank" href="files/dermaglow.pdf">pdf</a> 
+            </div>
+        </div>
+        
+        <!-- ═══ Nutrition ═══ -->
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(files/nutrition.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="#">Characterization and Feasibility of Wearable Spectroscopic Tracking of Nutrition Biomarkers</a><br/>
+                <span class="bold">Tarek Hamid</span>, Elizabeth C Courtney, Patricia Flores, Jane Byun, Afsaneh Doryab, Sibylle Kranz, Amanda Watson<br/>
+                <span class="italic">IEEE Pervasive Computing (<a target="_blank" href="https://www.computer.org/csdl/magazine/pc">PC</a></span>), 2025<br/>
+                <a class="btn btn-red" target="_blank" href="files/nutrition.pdf">pdf</a>
+            </div>
+        </div>
+
+        <!-- ═══ Blood Pressure – ICASSP 2025 ═══ -->
+        <div class="highlight publication row clearfix">
+            <div class="row-media" style="background-image: url(files/bp-icassp.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="#">A Multi-Wavelength Optical Sensing Framework for Calibration-Free Wearable Blood Pressure Monitoring</a><br/>
+                <span class="bold">Tarek Hamid</span>, Patricia Flores, Jane Byun, Xi Chen, Haoran Zhang, Kyle Quinn, Amanda Watson<br/>
+                <span class="italic">IEEE International Conference on Acoustics, Speech and Signal Processing (<a target="_blank" href="https://2025.ieeeicassp.org">ICASSP</a></span>), 2025<br/>
+                <a class="btn btn-red" target="_blank" href="files/bp-icassp.pdf">pdf</a>
+            </div>
+        </div>
+
+        <!-- ═══ Raproto ═══ -->
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(files/raproto.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="#">Raproto: An Open-Source Platform for Rapid Prototyping with Wearable Devices</a><br/>
+                <span class="bold">Tarek Hamid</span>, Kimberly Helm, Hyonyoung Choi, Jean Park, Claire Kendell, Stephanie Cummings, Steve Messe, Stefanie Modri, Insup Lee, James Weimer, Amanda Watson<br/>
+                <span class="italic">IEEE 20th International Conference on Body Sensor Networks (<a target="_blank" href="https://bsn.embs.org/2024/">BSN</a></span>), 2024<br/>
+                <a class="btn btn-red" target="_blank" href="files/raproto.pdf">pdf</a>
+            </div>
+        </div>
+
+        <!-- ═══ ACL Retear ═══ -->
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(files/acl-retear.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="#">Using Decision Tree Classifier to Increase Screening Test Sensitivity for the Prediction of ACL Retear</a><br/>
+                Tanishk Govil, <span class="bold">Tarek Hamid</span>, Kimberly Helm, Elliot Greenberg, Kevin Landrum, J Todd R Lawrence, Theodore J Ganley, Amanda Watson<br/>
+                <span class="italic">Companion of the ACM International Joint Conference on Pervasive and Ubiquitous Computing (<a target="_blank" href="https://www.ubicomp.org/ubicomp-iswc-2024/">UbiComp</a></span>), 2024<br/>
+                <a class="btn btn-red" target="_blank" href="files/acl-retear.pdf">pdf</a>
+            </div>
+        </div>
+        
+        <!-- ═══ SpectraVue ═══ -->
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(files/spectravue.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="#">SpectraVue: An Interactive Web Application Enabling Rapid Data Visualization and Analysis for Wearable Spectroscopy Research</a><br/>
+                <span class="bold">Tarek Hamid</span>, Insup Lee, Amanda Watson<br/>
+                <span class="italic">Adjunct Proceedings of the ACM International Joint Conference on Pervasive and Ubiquitous Computing (<a target="_blank" href="https://www.ubicomp.org/ubicomp-iswc-2023/">UbiComp</a></span>), 2023<br/>
+                <a class="btn btn-red" target="_blank" href="files/spectravue.pdf">pdf</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="noselect">
+        <h2>Contact</h2>
+        I am always open to collaborating or chatting about research! 
+        Please reach out at <span class="bold">hamidtarek3</span> [at] <span class="bold">gmail</span>.com
+    </div>
+</div>
+<div class="footer noselect">
+    <div class="footer-content">
+        &copy; 2026 Tarek Hamid. Design inspired by <a href="https://github.com/nicklashansen/nicklashansen.github.io">Nicklas Hansen</a>.
+    </div>
+</div>
+
+</body>
+</html>
